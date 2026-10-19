@@ -1,0 +1,70 @@
+{
+  "name": "chenyuan-xiantu",
+  "private": true,
+  "version": "3.0.0",
+  "type": "module",
+  "description": "尘缘仙途 · 文字修仙增量游戏（Node + Vue3 + WebSocket 服务器权威版，含 Windows 桌面版）",
+  "author": "ChuaiCoder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChuaiCoder/ChenyuanXiantu.git"
+  },
+  "homepage": "https://github.com/ChuaiCoder/ChenyuanXiantu#readme",
+  "main": "electron/main.mjs",
+  "scripts": {
+    "dev": "node server/index.mjs --dev",
+    "build": "vite build",
+    "start": "node server/index.mjs",
+    "desktop": "npm run build && electron .",
+    "stage:electron": "node tools/stage-electron-dist.mjs",
+    "dist": "npm run build && npm run stage:electron && electron-builder --win",
+    "test": "node test/sim.mjs && node --test test/architecture.mjs test/combat.mjs test/regression.mjs test/progression.mjs test/seek.mjs test/server.mjs"
+  },
+  "build": {
+    "appId": "com.chenyuan.xiantu",
+    "productName": "尘缘仙途",
+    "asar": false,
+    "electronDist": ".cache/electron-dist",
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    },
+    "directories": {
+      "output": "out",
+      "buildResources": "build"
+    },
+    "files": [
+      "electron/**/*",
+      "server/**/*",
+      "shared/**/*",
+      "dist/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "ChenyuanXiantu-${version}-portable.exe"
+    }
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "proper-lockfile": "4.1.2",
+    "vue": "^3.5.13",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "electron": "^44.8.0",
+    "electron-builder": "^26.15.3",
+    "vite": "^6.0.7"
+  }
+}

@@ -1,0 +1,31 @@
+# 依赖
+node_modules/
+
+# 游戏存档（首次启动会自动新建，不随仓库分发）
+server/saves/
+
+# 构建产物
+dist/
+out/
+release/
+release-desktop/
+build/electron-dist/
+.cache/
+
+# 截图与本地临时文件（仓库里只保留 docs/ 下的展示图与 output/archives 归档）
+output/*
+!output/archives/
+_rt/
+_rt2/
+.playwright-cli/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+
+# AI 工作区数据（个人笔记，不入公开仓库）
+.workbuddy-ai/
